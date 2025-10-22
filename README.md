@@ -141,6 +141,15 @@ iptables -A FORWARD -i eth2 -o eth0 -j ACCEPT
 iptables -A FORWARD -i eth3 -o eth0 -j ACCEPT
 iptables -A FORWARD -i eth4 -o eth0 -j ACCEPT
 ```
+Aktifkan IP forwarding dengan perintah echo 1 > /proc/sys/net/ipv4/ip_forward agar kernel Linux dapat meneruskan paket antar-interface dan berfungsi sebagai router.
+
+Terapkan NAT (Network Address Translation) menggunakan iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE untuk mengubah alamat sumber dari jaringan internal menjadi alamat IP interface eth0 (terhubung ke NAT Cloud), sehingga seluruh host internal dapat mengakses Internet.
+
+Tambahkan aturan FORWARD pada iptables untuk mengizinkan lalu lintas antar-interface internal (eth1–eth4) agar setiap jaringan Barat, Timur, dan DMZ dapat saling berkomunikasi.
+
+Izinkan akses ke Internet dengan menambahkan aturan FORWARD dari setiap interface internal (eth1–eth4) menuju eth0, agar paket dari jaringan lokal bisa diteruskan keluar melalui NAT.
+
+Dengan konfigurasi tersebut, seluruh jaringan internal dapat saling berhubungan dan keluar ke Internet melalui router Eonwe secara terpusat.
 
 # Soal 3
 ```
