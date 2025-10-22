@@ -6,7 +6,7 @@
 
 # Soal 1
 <img width="2960" height="1610" alt="image" src="https://github.com/user-attachments/assets/9c1f21ee-cb43-47b7-8d67-4ce6b75b18ee" />
-Eonwe
+### Eonwe
 ```
 auto eth0
 iface eth0 inet dhcp
